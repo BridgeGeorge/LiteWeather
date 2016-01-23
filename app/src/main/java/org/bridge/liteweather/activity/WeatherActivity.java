@@ -20,39 +20,40 @@ import org.bridge.liteweather.util.HttpUtil;
 import org.bridge.liteweather.util.LogUtil;
 import org.bridge.liteweather.util.Utility;
 
+
 public class WeatherActivity extends Activity implements OnClickListener {
 
     private LinearLayout weatherInfoLayout;
     /**
-     * ÓÃÓÚÏÔÊ¾³ÇÊĞÃû
+     * ç”¨äºæ˜¾ç¤ºåŸå¸‚å
      */
     private TextView cityNameText;
     /**
-     * ÓÃÓÚÏÔÊ¾·¢²¼Ê±¼ä
+     * ç”¨äºæ˜¾ç¤ºå‘å¸ƒæ—¶é—´
      */
     private TextView publishText;
     /**
-     * ÓÃÓÚÏÔÊ¾ÌìÆøÃèÊöĞÅÏ¢
+     * ç”¨äºæ˜¾ç¤ºå¤©æ°”æè¿°ä¿¡æ¯
      */
     private TextView weatherDespText;
     /**
-     * ÓÃÓÚÏÔÊ¾ÆøÎÂ1
+     * ç”¨äºæ˜¾ç¤ºæ°”æ¸©1
      */
     private TextView temp1Text;
     /**
-     * ÓÃÓÚÏÔÊ¾ÆøÎÂ2
+     * ç”¨äºæ˜¾ç¤ºæ°”æ¸©2
      */
     private TextView temp2Text;
     /**
-     * ÓÃÓÚÏÔÊ¾µ±Ç°Ê±¼ä
+     * ç”¨äºæ˜¾ç¤ºå½“å‰æ—¶é—´
      */
     private TextView currentDateText;
     /**
-     * ÇĞ»»³ÇÊĞ°´Å¥
+     * åˆ‡æ¢åŸå¸‚æŒ‰é’®
      */
     private Button switchCity;
     /**
-     * ¸üĞÂÌìÆø°´Å¥
+     * æ›´æ–°å¤©æ°”æŒ‰é’®
      */
     private Button refreshWeather;
 
@@ -65,7 +66,7 @@ public class WeatherActivity extends Activity implements OnClickListener {
     }
 
     /**
-     * ³õÊ¼»¯¸÷¸ö¿Ø¼ş
+     * åˆå§‹åŒ–å„ä¸ªæ§ä»¶
      */
     private void Init() {
         weatherInfoLayout = (LinearLayout) findViewById(R.id.weather_info_layout);
@@ -79,14 +80,14 @@ public class WeatherActivity extends Activity implements OnClickListener {
         refreshWeather = (Button) findViewById(R.id.refresh_weather);
         String countyCode = getIntent().getStringExtra("county_code");
         if (!TextUtils.isEmpty(countyCode)) {
-            // ÓĞÏØ¼¶´úºÅÊ±¾ÍÈ¥²éÑ¯ÌìÆø
+            // æœ‰å¿çº§ä»£å·æ—¶å°±å»æŸ¥è¯¢å¤©æ°”
             LogUtil.d("getStringExtra", countyCode);
-            publishText.setText("Í¬²½ÖĞ...");
+            publishText.setText("åŒæ­¥ä¸­...");
             weatherInfoLayout.setVisibility(View.INVISIBLE);
             cityNameText.setVisibility(View.INVISIBLE);
             queryWeatherCode(countyCode);
         } else {
-            // Ã»ÓĞ´úºÅ£¬¾ÍÖ±½ÓÏÔÊ¾±¾µØÌìÆø
+            // æ²¡æœ‰ä»£å·ï¼Œå°±ç›´æ¥æ˜¾ç¤ºæœ¬åœ°å¤©æ°”
             showWeather();
 
         }
@@ -97,6 +98,7 @@ public class WeatherActivity extends Activity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
+        // TODO Auto-generated method stub
         switch (v.getId()) {
             case R.id.switch_city:
                 Intent intent = new Intent(this, ChooseAreaActivity.class);
@@ -105,7 +107,7 @@ public class WeatherActivity extends Activity implements OnClickListener {
                 finish();
                 break;
             case R.id.refresh_weather:
-                publishText.setText("Í¬²½ÖĞ...");
+                publishText.setText("åŒæ­¥ä¸­...");
                 SharedPreferences prefs = PreferenceManager
                         .getDefaultSharedPreferences(this);
                 String weatherCode = prefs.getString("weather_code", "");
@@ -119,19 +121,20 @@ public class WeatherActivity extends Activity implements OnClickListener {
     }
 
     /**
-     * ²éÑ¯ÏØ¼¶´úºÅËù¶ÔÓ¦µÄÌìÆø´úºÅ¡£
+     * æŸ¥è¯¢å¿çº§ä»£å·æ‰€å¯¹åº”çš„å¤©æ°”ä»£å·ã€‚
      *
      * @param countyCode
      */
 
     private void queryWeatherCode(String countyCode) {
+        // TODO Auto-generated method stub
         String address = "http://www.weather.com.cn/data/list3/city"
                 + countyCode + ".xml";
         queryFromServer(address, "countyCode");
     }
 
     /**
-     * ²éÑ¯ÌìÆø´úºÅËù¶ÔÓ¦µÄÌìÆø¡£
+     * æŸ¥è¯¢å¤©æ°”ä»£å·æ‰€å¯¹åº”çš„å¤©æ°”ã€‚
      */
     private void queryWeatherInfo(String weatherCode) {
         String address = "http://www.weather.com.cn/data/cityinfo/"
@@ -140,7 +143,7 @@ public class WeatherActivity extends Activity implements OnClickListener {
     }
 
     /**
-     * ¸ù¾İ´«ÈëµÄµØÖ·ºÍÀàĞÍÈ¥Ïò·şÎñÆ÷²éÑ¯ÌìÆø´úºÅ»òÕßÌìÆøĞÅÏ¢
+     * æ ¹æ®ä¼ å…¥çš„åœ°å€å’Œç±»å‹å»å‘æœåŠ¡å™¨æŸ¥è¯¢å¤©æ°”ä»£å·æˆ–è€…å¤©æ°”ä¿¡æ¯
      *
      * @param address
      * @param type
@@ -160,7 +163,7 @@ public class WeatherActivity extends Activity implements OnClickListener {
                         }
                     }
                 } else if ("weatherCode".equals(type)) {
-                    // ´¦Àí·şÎñÆ÷·µ»ØµÄÌìÆøĞÅÏ¢
+                    // å¤„ç†æœåŠ¡å™¨è¿”å›çš„å¤©æ°”ä¿¡æ¯
                     Utility.handleWeatherResponse(WeatherActivity.this,
                             response);
                     runOnUiThread(new Runnable() {
@@ -181,7 +184,7 @@ public class WeatherActivity extends Activity implements OnClickListener {
 
                     @Override
                     public void run() {
-                        publishText.setText("Í¬²½Ê§°Ü");
+                        publishText.setText("åŒæ­¥å¤±è´¥");
                     }
                 });
             }
@@ -189,7 +192,7 @@ public class WeatherActivity extends Activity implements OnClickListener {
     }
 
     /**
-     * ´ÓSharedPreferencesÎÄ¼şÖĞ¶ÁÈ¡´æ´¢µÄÌìÆøĞÅÏ¢£¬²¢ÇÒÏÔÊ¾µ½½çÃæÉÏ¡£
+     * ä»SharedPreferencesæ–‡ä»¶ä¸­è¯»å–å­˜å‚¨çš„å¤©æ°”ä¿¡æ¯ï¼Œå¹¶ä¸”æ˜¾ç¤ºåˆ°ç•Œé¢ä¸Šã€‚
      */
     private void showWeather() {
         SharedPreferences prefs = PreferenceManager
@@ -198,11 +201,11 @@ public class WeatherActivity extends Activity implements OnClickListener {
         temp1Text.setText(prefs.getString("temp1", ""));
         temp2Text.setText(prefs.getString("temp2", ""));
         weatherDespText.setText(prefs.getString("weather_desp", ""));
-        publishText.setText("½ñÌì" + prefs.getString("publish_time", "") + "·¢²¼");
+        publishText.setText("ä»Šå¤©" + prefs.getString("publish_time", "") + "å‘å¸ƒ");
         currentDateText.setText(prefs.getString("current_date", ""));
         weatherInfoLayout.setVisibility(View.VISIBLE);
         cityNameText.setVisibility(View.VISIBLE);
-        // ¼¤»îºóÌ¨×Ô¶¯¸üĞÂ·şÎñ
+        // æ¿€æ´»åå°è‡ªåŠ¨æ›´æ–°æœåŠ¡
         Intent intent = new Intent(this, AutoUpdateService.class);
         startService(intent);
 
