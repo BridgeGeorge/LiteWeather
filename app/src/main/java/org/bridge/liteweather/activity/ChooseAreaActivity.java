@@ -30,6 +30,9 @@ import org.bridge.liteweather.util.Utility;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 选择地区的Activity
+ */
 public class ChooseAreaActivity extends Activity {
     public static final int LEVEL_PROVINCE = 0;
     public static final int LEVEL_CITY = 1;

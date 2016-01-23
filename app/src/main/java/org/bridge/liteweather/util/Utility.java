@@ -16,6 +16,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * 常用方法类封装
+ */
 public class Utility {
     /**
      * 解析和处理服务器返回的省级数据

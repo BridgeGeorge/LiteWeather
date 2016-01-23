@@ -20,7 +20,9 @@ import org.bridge.liteweather.util.HttpUtil;
 import org.bridge.liteweather.util.LogUtil;
 import org.bridge.liteweather.util.Utility;
 
-
+/**
+ * 天气呈现界面
+ */
 public class WeatherActivity extends Activity implements OnClickListener {
 
     private LinearLayout weatherInfoLayout;

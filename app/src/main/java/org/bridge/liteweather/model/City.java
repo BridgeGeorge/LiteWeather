@@ -1,5 +1,8 @@
 package org.bridge.liteweather.model;
 
+/**
+ * City model
+ */
 public class City {
 	private int id;
 	private String cityName;

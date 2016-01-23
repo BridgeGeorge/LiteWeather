@@ -1,5 +1,8 @@
 package org.bridge.liteweather.model;
 
+/**
+ * Country model
+ */
 public class County {
 	private int id;
 	private String countyName;
